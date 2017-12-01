@@ -1,0 +1,26 @@
+{
+  "name": "constructor-hangman",
+  "version": "1.0.0",
+  "description": "Hangman Game",
+  "main": "hangman.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matlittle/constructor-hangman.git"
+  },
+  "keywords": [
+    "Hangman"
+  ],
+  "author": "Mathew Little",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/matlittle/constructor-hangman/issues"
+  },
+  "homepage": "https://github.com/matlittle/constructor-hangman#readme",
+  "dependencies": {
+    "prompt": "^1.0.0",
+    "request": "^2.83.0"
+  }
+}
