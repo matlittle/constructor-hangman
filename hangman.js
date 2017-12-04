@@ -1,8 +1,13 @@
 
-var prompt = require('prompt');
-var request = require('request');
+const Prompt = require('prompt');
+const Request = require('request');
+
+const WordConstruct = require('./word.js');
+const LetterConstruct = require('./letter.js');
+
 
 getRandomWord();
+
 
 function getRandomWord() {
     const endURL = "https://wordsapiv1.p.mashape.com/words/";
@@ -22,9 +27,8 @@ function getRandomWord() {
         headers: headers
     }
 
-    request.get(options, handleWordReturn);
+    Request.get(options, handleWordReturn);
 }
-
 
 function handleWordReturn(err, res, body) {
     if(err) throw err;
@@ -38,11 +42,10 @@ function handleWordReturn(err, res, body) {
         return;
     }
 
-    console.log("words: ", words);
-    console.log("randNum: ", randNum);
-    console.log("randWord: ", randWord);
-
+    wordChosen(randWord);
 }
 
+function wordChosen(word) {
 
+}
 
