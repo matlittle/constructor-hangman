@@ -40,6 +40,13 @@ WordConstructor.prototype.checkGuess = function(guess) {
     return found;
 }
 
+WordConstructor.prototype.previousGuess - function(guess) {
+    if ( this.guessedLetters.indexOf(guess) < 0 ) {
+        return false;
+    }
+    return true;
+}
+
 WordConstructor.prototype.checkWin = function() {
     if ( this.displayWord.indexOf('_') < 0 ) {
         return true;
