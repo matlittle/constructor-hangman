@@ -1,19 +1,27 @@
 const Letter = require('./letter');
 
-function WordCon(word) {
+function WordConstructor(word) {
     this.currentWord = word.toUpperCase();
     this.letters = this.buildLettersObj;
-    this.displayWord = this.buildDisplayWord;
+    this.displayWord = this.updateDisplayWord;
 }
 
-WordCon.prototype.buildLettersObj = function() {
+WordConstructor.prototype.buildLettersObj = function() {
     var lObjs = [];
     for(var i = 0; i < this.currentWord.length; i++) {
-        
+        lObjs.push( new Letter(this.currentWord[i]) )
     }
 }
 
-WordCon.prototype.buildDisplayWord = function() {
-
+WordConstructor.prototype.updateDisplayWord = function() {
+    for (var i = 0; i < this.letters.length; i++) {
+        if (this.letters[i].guessed) {
+            this.displayWord[i] = this.letters[i].value;
+        } else {
+            this.displayWord[i] = "_"
+        }
+    }
 }
+
+module.exports = WordConstructor;
 
