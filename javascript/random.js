@@ -12,10 +12,9 @@ function RandomWord(callback) {
     
         if(randWord === undefined) {
             RandomWord();
-            return;
+        } else {
+            callback(randWord);
         }
-    
-        callback(randWord);
     });
 }
 
@@ -37,6 +36,5 @@ function getCallParams() {
         headers: headers
     };
 }
-
 
 module.exports = RandomWord;

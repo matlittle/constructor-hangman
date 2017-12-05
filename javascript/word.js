@@ -40,5 +40,12 @@ WordConstructor.prototype.checkGuess = function(guess) {
     return found;
 }
 
-module.exports = WordConstructor;
+WordConstructor.prototype.checkWin = function() {
+    if ( this.displayWord.indexOf('_') < 0 ) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
+module.exports = WordConstructor;
