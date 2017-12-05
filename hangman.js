@@ -1,8 +1,8 @@
 const Prompt = require('prompt');
 
-const WordConstruct = require('./word');
-const LetterConstruct = require('./letter');
-const RandomWord = require('./random');
+const WordConstruct = require('./javascript/word');
+const RandomWord = require('./javascript/random');
+const Round = require('./javascript/round');
 
 
 RandomWord(wordChosen);
