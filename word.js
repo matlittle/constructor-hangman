@@ -23,5 +23,17 @@ WordConstructor.prototype.updateDisplayWord = function() {
     }
 }
 
+WordConstructor.prototype.checkGuess = function(guess) {
+    var found = false;
+    this.letters.forEach( letter => {
+        if (letter.value === guess) {
+            letter.guessed = true;
+            found = true;
+        }
+    });
+
+    return found;
+}
+
 module.exports = WordConstructor;
 
