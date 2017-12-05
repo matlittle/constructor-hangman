@@ -23,6 +23,15 @@ function startGame() {
     RandomWord(wordChosen);
 }
 
+function newRound() {
+    game.round++;
+    game.guesses = 6;
+
+    console.log("");
+
+    RandomWord(wordChosen);
+}
+
 function wordChosen(w) {
     game.word = new WordConstruct(w);
 
@@ -53,6 +62,10 @@ function promptForGuess() {
 function handleGuess(guess) {
     guess = guess.toUpperCase();
 
+    if ( game.word.previousGuess(guess) ) {
+        alreadyGuessed();
+    }
+
     var found = game.word.checkGuess(guess);
 
     if(found) {
@@ -60,10 +73,54 @@ function handleGuess(guess) {
         game.word.updateDisplayWord();
     } else {
         console.log(`\nNot Found!\n`.red.bold)
+        game.guesses--;
+
+        if (game.guesses === 0) {
+            gameLost();
+            return;
+        }
     }
 
+    if( game.word.checkWin() ) {
+        gameWon();
+    } else {
+        promptForGuess();
+    }
+}
+
+function alreadyGuessed() {
+    console.log("Letter previously guessed.\n".yellow);
     promptForGuess();
 }
 
+function gameWon() {
+    game.score.wins++;
+    console.log("You won!\n".green.bold);
+    promptForNewRound();
+}
+
+function gameLost() {
+    game.score.losses++;
+    console.log("You lost!\n".green.bold);
+    promptForNewRound();
+}
+
+function promptForNewRound() {
+    Prompt.start();
+    Prompt.get([{
+        name: "again",
+        description: 'Would you like to play again? (Y/N)'.blue,
+        type: 'string',
+        pattern: /[nyNY]/,
+        message: 'Please use only Y or N',
+        required: true
+    }], function(err, result) {
+        if (err) console.log(err);
+
+        if (result.again.toUpperCase() === "Y" ) {
+            newRound();
+        }
+    });
+}
 
 
