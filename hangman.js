@@ -14,11 +14,14 @@ var game = {
     word: {}
 }
 
+Prompt.message = '';
+Prompt.delimiter = ':'.blue;
+
 startGame();
 
 
 function startGame() {
-    console.log( '\nWelcome to Hangman!\n'.yellow.bold);
+    console.log( '\nWelcome to Hangman!\n'.yellow);
 
     RandomWord(wordChosen);
 }
@@ -33,6 +36,8 @@ function newRound() {
 }
 
 function wordChosen(w) {
+    console.log(`Round ${game.round}\n`.yellow);
+
     game.word = new WordConstruct(w);
 
     promptForGuess();
@@ -40,9 +45,6 @@ function wordChosen(w) {
 
 function promptForGuess() {
     console.log(`${game.word.displayWord}\n`);
-
-    Prompt.message = '';
-    Prompt.delimiter = ':'.blue;
 
     Prompt.start();
     Prompt.get([{
@@ -64,6 +66,7 @@ function handleGuess(guess) {
 
     if ( game.word.previousGuess(guess) ) {
         alreadyGuessed();
+        return;
     }
 
     var found = game.word.checkGuess(guess);
@@ -89,19 +92,21 @@ function handleGuess(guess) {
 }
 
 function alreadyGuessed() {
-    console.log("Letter previously guessed.\n".yellow);
+    console.log("\nLetter previously guessed.\n".yellow);
     promptForGuess();
 }
 
 function gameWon() {
     game.score.wins++;
     console.log("You won!\n".green.bold);
+    console.log(`Word was: ${game.word.currentWord}\n`);
     promptForNewRound();
 }
 
 function gameLost() {
     game.score.losses++;
-    console.log("You lost!\n".green.bold);
+    console.log("You lost!\n".red.bold);
+    console.log(`Word was: ${game.word.currentWord}\n`);
     promptForNewRound();
 }
 

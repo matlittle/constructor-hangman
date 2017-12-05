@@ -40,7 +40,7 @@ WordConstructor.prototype.checkGuess = function(guess) {
     return found;
 }
 
-WordConstructor.prototype.previousGuess - function(guess) {
+WordConstructor.prototype.previousGuess = function(guess) {
     if ( this.guessedLetters.indexOf(guess) < 0 ) {
         return false;
     }
