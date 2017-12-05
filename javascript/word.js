@@ -4,6 +4,7 @@ function WordConstructor(word) {
     this.currentWord = word.toUpperCase();
     this.letters = [];
     this.displayWord =  "";
+    this.guessedLetters = [];
 
     this.buildLettersObj();
     this.updateDisplayWord();
@@ -19,14 +20,15 @@ WordConstructor.prototype.updateDisplayWord = function() {
     this.displayWord = "";
     for (var i = 0; i < this.letters.length; i++) {
         if (this.letters[i].guessed) {
-            this.displayWord += this.letters[i].value;
+            this.displayWord += `${this.letters[i].value} `;
         } else {
-            this.displayWord += "_";
+            this.displayWord += "_ ";
         }
     }
 }
 
 WordConstructor.prototype.checkGuess = function(guess) {
+    this.guessedLetters.push(guess);
     var found = false;
     this.letters.forEach( letter => {
         if (letter.value === guess) {
