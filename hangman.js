@@ -75,9 +75,10 @@ function handleGuess(guess) {
         console.log(`\nGood Guess!\n`.green.bold);
         game.word.updateDisplayWord();
     } else {
-        console.log(`\nNot Found!\n`.red.bold)
         game.guesses--;
-
+        console.log(`\nNot Found!`.red.bold);
+        console.log(`Remaining guesses: ${game.guesses}\n`);
+        
         if (game.guesses === 0) {
             gameLost();
             return;
