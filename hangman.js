@@ -69,9 +69,7 @@ function handleGuess(guess) {
         return;
     }
 
-    var found = game.word.checkGuess(guess);
-
-    if(found) {
+    if ( game.word.checkGuess(guess) ) {
         console.log(`\nGood Guess!\n`.green.bold);
         game.word.updateDisplayWord();
     } else {
@@ -79,7 +77,7 @@ function handleGuess(guess) {
         console.log(`\nNot Found!`.red.bold);
         console.log(`Remaining guesses: ${game.guesses}\n`);
         
-        if (game.guesses === 0) {
+        if ( game.guesses === 0 ) {
             gameLost();
             return;
         }
