@@ -11,7 +11,7 @@ function RandomWord(callback) {
         const randWord = words[randNum];
     
         if(randWord === undefined) {
-            RandomWord();
+            RandomWord(callback);
         } else {
             callback(randWord);
         }
